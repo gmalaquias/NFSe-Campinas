@@ -3,7 +3,9 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.PhantomJS;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -20,7 +22,7 @@ namespace GetUrlNF
 {
     class Program
     {
-        public const string LOCAL_DRIVER = "C:/";
+        public static string LOCAL_DRIVER = getDirectory() + "\\drivers";
 
         static void Main(string[] args)
         {
@@ -80,6 +82,14 @@ namespace GetUrlNF
                 Console.WriteLine("Id da nota: {0}", idNota);
                 Console.WriteLine("Url da nota: {0}", urlNota);
             }
+        }
+
+        public static string getDirectory()
+        {
+            var caminho = Path.GetDirectoryName(Assembly.GetAssembly(typeof(Program)).Location);
+            if (caminho.Contains("bin"))
+                return caminho.Replace("\\bin\\Debug", "");
+            return caminho;
         }
     }
 }
