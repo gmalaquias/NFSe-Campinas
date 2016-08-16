@@ -86,7 +86,7 @@ namespace GetUrlNF
 
         public static string getDirectory()
         {
-            var caminho = Path.GetDirectoryName(Assembly.GetAssembly(typeof(Program)).Location);
+            var caminho = System.Environment.CurrentDirectory;
             if (caminho.Contains("bin"))
                 return caminho.Replace("\\bin\\Debug", "");
             return caminho;
